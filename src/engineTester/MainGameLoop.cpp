@@ -4,6 +4,12 @@
 
 int main() {
 	DisplayManager::createDisplay();
-	std::cin.get();
+	while (!DisplayManager::isCloseRequested()) {
+
+
+
+		DisplayManager::updateDisplay();
+	}
+	DisplayManager::closeDisplay();
 	return 0;
 }

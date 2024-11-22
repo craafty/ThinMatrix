@@ -11,7 +11,9 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("ThinMatrix")
+add_subdirectory(libs/glfw)
+add_subdirectory(libs/glad)
+add_subdirectory(libs/glm)
 
 # Add source to this project's executable.
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS
@@ -20,6 +22,13 @@ file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS
 )
 add_executable(${PROJECT_NAME} ${MY_SOURCES})
 
-target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC 
+target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src"
+)
+
+target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE 
+	glfw
+	glad
+	glm
 )
