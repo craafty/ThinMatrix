@@ -33,6 +33,18 @@ file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS
 )
 add_executable(${PROJECT_NAME} ${MY_SOURCES})
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC
+        ASSETS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/res/"
+        SOURCE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/src/"
+    )
+else() # Assume Release or other modes
+    target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC
+        ASSETS_PATH="./res/"
+        SOURCE_PATH="./src/"
+    )
+endif()
+
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC
 	"${CMAKE_CURRENT_SOURCE_DIR}/include/"
 	"${CMAKE_CURRENT_SOURCE_DIR}/src"

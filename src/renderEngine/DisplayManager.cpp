@@ -1,4 +1,5 @@
 #include "DisplayManager.h"
+#include "entities/Camera.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -32,6 +33,7 @@ void DisplayManager::createDisplay() {
     }
 
     glfwMakeContextCurrent(window);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cerr << "Failed to initialize GLAD" << std::endl;
@@ -49,9 +51,9 @@ void DisplayManager::updateDisplay() {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000 / FPS_CAP));
 
     long currentFrameTime = getCurrentTime();
-    delta = (currentFrameTime - lastFrameTime) / 1000.0f;
+    delta = (currentFrameTime - lastFrameTime)/1000.0f;
     lastFrameTime = currentFrameTime;
-
+    
 }
 
 bool DisplayManager::isCloseRequested() {
