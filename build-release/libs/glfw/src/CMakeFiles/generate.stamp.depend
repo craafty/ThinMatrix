@@ -1,0 +1,4 @@
+# CMake generation dependency list for this directory.
+T:/VisualStudio/ThinMatrix/build-release/CMakeFiles/cmake.verify_globs
+T:/VisualStudio/ThinMatrix/libs/glfw/CMake/glfw3.pc.in
+T:/VisualStudio/ThinMatrix/libs/glfw/src/CMakeLists.txt

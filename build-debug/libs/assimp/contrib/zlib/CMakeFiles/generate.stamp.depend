@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Software/CMake/share/cmake-3.31/Modules/CheckCSourceCompiles.cmake
+C:/Software/CMake/share/cmake-3.31/Modules/CheckFunctionExists.cmake
+C:/Software/CMake/share/cmake-3.31/Modules/CheckIncludeFile.cmake
+C:/Software/CMake/share/cmake-3.31/Modules/CheckIncludeFileCXX.cmake
+C:/Software/CMake/share/cmake-3.31/Modules/CheckTypeSize.cmake
+T:/VisualStudio/ThinMatrix/build-debug/CMakeFiles/cmake.verify_globs
+T:/VisualStudio/ThinMatrix/libs/assimp/contrib/zlib/CMakeLists.txt
+T:/VisualStudio/ThinMatrix/libs/assimp/contrib/zlib/zconf.h.cmakein
+T:/VisualStudio/ThinMatrix/libs/assimp/contrib/zlib/zlib.pc.cmakein
