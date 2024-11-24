@@ -1,4 +1,4 @@
-#version 460 core
+#version 440 core
 
 in vec2 pass_textureCoordinates;
 in vec3 surfaceNormal;

@@ -18,8 +18,8 @@ int main() {
     Loader loader;
     Light light(glm::vec3(0.0f, 400.0f, 0.0f), glm::vec3(1, 1, 1));
 
-    TexturedModel tree(ModelLoader::loadModel(ASSETS_PATH "tree.obj", loader),
-        ModelTexture(loader.loadTexture(ASSETS_PATH "tree.png")));
+    TexturedModel tree(ModelLoader::loadModel(ASSETS_PATH "ChristmasTree/ChristmasTree.obj", loader),
+        ModelTexture(loader.loadTexture(ASSETS_PATH "ChristmasTree/Handle1Tex.png")));
 
     TexturedModel fern(ModelLoader::loadModel(ASSETS_PATH "fern.obj", loader),
         ModelTexture(loader.loadTexture(ASSETS_PATH "fern.png")));
@@ -35,19 +35,19 @@ int main() {
     flower.getTexture().setHasTransparency(true);
     flower.getTexture().setUseFakeLighting(true);
 
-    Terrain terrain(0, 0, loader, ModelTexture(loader.loadTexture(ASSETS_PATH "grass.png")));
+    Terrain terrain(0, 0, loader, ModelTexture(loader.loadTexture(ASSETS_PATH "snow.png")));
 
     std::vector<Entity> allTrees;
     for (int i = 0; i < 100; i++)
     {
         float x = glm::linearRand(0, 800);
         float z = glm::linearRand(0, 800);
-        allTrees.push_back(Entity(tree, glm::vec3(x, 0, z), 0, 0, 0, 10.0f));
+        allTrees.push_back(Entity(tree, glm::vec3(x, 0, z), 0, 0, 0, 15.0f));
     }
 
     std::vector<Entity> allGrass;
     std::vector<Entity> allFlowers;
-    for (int i = 0; i < 300; i++)
+    for (int i = 0; i < 200; i++)
     {
         float x = glm::linearRand(0, 800);
         float z = glm::linearRand(0, 800);
@@ -67,11 +67,11 @@ int main() {
 
     MasterRenderer renderer;
 
-    TexturedModel batman(ModelLoader::loadModel(ASSETS_PATH "Batman/Batman.obj", loader),
-        ModelTexture(loader.loadTexture(ASSETS_PATH "Batman/Batman.png")));
+    TexturedModel playerModel(ModelLoader::loadModel(ASSETS_PATH "Elf/AnnoyingElfKeith.obj", loader),
+        ModelTexture(loader.loadTexture(ASSETS_PATH "Elf/Handle1Tex.png")));
 
 
-    Player player(batman, glm::vec3(400, 0, 390), 0, 0, 0, 3);
+    Player player(playerModel, glm::vec3(400, 0, 390), 0, 0, 0, 3);
     Camera camera(player);
 
     while (!DisplayManager::isCloseRequested()) {

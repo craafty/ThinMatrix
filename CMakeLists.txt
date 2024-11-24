@@ -40,8 +40,8 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
 else() # Assume Release or other modes
     target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC
-        ASSETS_PATH="./res/"
-        SOURCE_PATH="./src/"
+        ASSETS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/res/"
+        SOURCE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/src/"
     )
 endif()
 

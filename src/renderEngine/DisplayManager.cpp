@@ -8,7 +8,7 @@ GLFWwindow* DisplayManager::window = nullptr;
 const int DisplayManager::WIDTH = 1280;
 const int DisplayManager::HEIGHT = 720;
 const int DisplayManager::FPS_CAP = 120;
-const char* DisplayManager::TITLE = "Our First Display";
+const char* DisplayManager::TITLE = "ThinMatrix";
 
 long DisplayManager::lastFrameTime = getCurrentTime();
 float DisplayManager::delta = 0.0f;
@@ -21,7 +21,7 @@ void DisplayManager::createDisplay() {
 
     // Set GLFW window hints for OpenGL 3.2 core profile
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
