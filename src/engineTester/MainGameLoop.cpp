@@ -16,14 +16,13 @@
 int main() {
     DisplayManager::createDisplay();
     Loader loader;
-    Light light(glm::vec3(0.0f, 400.0f, 0.0f), glm::vec3(1, 1, 1));
+    Light light(glm::vec3(400.0f, 10.0f, 390.0f), glm::vec3(1, 0.6, 0.6));
 
-    TexturedModel tree(ModelLoader::loadModel(ASSETS_PATH "ChristmasTree/ChristmasTree.obj", loader),
+    TexturedModel christmastree(ModelLoader::loadModel(ASSETS_PATH "ChristmasTree/ChristmasTree.obj", loader),
         ModelTexture(loader.loadTexture(ASSETS_PATH "ChristmasTree/Handle1Tex.png")));
 
-    TexturedModel fern(ModelLoader::loadModel(ASSETS_PATH "fern.obj", loader),
-        ModelTexture(loader.loadTexture(ASSETS_PATH "fern.png")));
-    fern.getTexture().setHasTransparency(true);
+    TexturedModel tree(ModelLoader::loadModel(ASSETS_PATH "tree.obj", loader),
+        ModelTexture(loader.loadTexture(ASSETS_PATH "tree.png")));
 
     TexturedModel grass(ModelLoader::loadModel(ASSETS_PATH "grassModel.obj", loader),
         ModelTexture(loader.loadTexture(ASSETS_PATH "grassTexture.png")));
@@ -35,14 +34,36 @@ int main() {
     flower.getTexture().setHasTransparency(true);
     flower.getTexture().setUseFakeLighting(true);
 
+    Entity fireplace(TexturedModel(ModelLoader::loadModel(ASSETS_PATH "christmasfireplace/christmasfireplace.obj", loader),
+        ModelTexture(loader.loadTexture(ASSETS_PATH "christmasfireplace/fireplace02.png"))),
+        glm::vec3(400, 0, 400), 0, 180, 0, 7);
+
+    Entity santaHat(TexturedModel(ModelLoader::loadModel(ASSETS_PATH "SantaHat/santa hat.obj", loader),
+        ModelTexture(loader.loadTexture(ASSETS_PATH "SantaHat/lambert2.png"))),
+        glm::vec3(398, 0, 401), 0, 0, 0, 2);
+
+    Entity sign(TexturedModel(ModelLoader::loadModel(ASSETS_PATH "sign/kingeddysign.obj", loader),
+        ModelTexture(loader.loadTexture(ASSETS_PATH "sign/SB_SBCU_signs_eds_01.png"))),
+        glm::vec3(390, 0, 397), 0, 150, 0, 0.2);
+
     Terrain terrain(0, 0, loader, ModelTexture(loader.loadTexture(ASSETS_PATH "snow.png")));
 
     std::vector<Entity> allTrees;
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 200; i++)
     {
         float x = glm::linearRand(0, 800);
         float z = glm::linearRand(0, 800);
-        allTrees.push_back(Entity(tree, glm::vec3(x, 0, z), 0, 0, 0, 15.0f));
+        if ((x > 450 || x < 350) || (z > 450 || z < 350))
+            allTrees.push_back(Entity(christmastree, glm::vec3(x, 0, z), 0, 0, 0, 15.0f));
+        else
+            i--;
+
+        x = glm::linearRand(0, 800);
+        z = glm::linearRand(0, 800);
+        if ((x > 450 || x < 350) || (z > 450 || z < 350))
+            allTrees.push_back(Entity(tree, glm::vec3(x, 0, z), 0, 0, 0, 15.0f));
+        else
+            i--;
     }
 
     std::vector<Entity> allGrass;
@@ -55,14 +76,6 @@ int main() {
         x = glm::linearRand(0, 800);
         z = glm::linearRand(0, 800);
         allFlowers.push_back(Entity(flower, glm::vec3(x, 0, z), 0, 0, 0, 3.0f));
-    }
-
-    std::vector<Entity> allFerns;
-    for (int i = 0; i < 100; i++)
-    {
-        float x = glm::linearRand(0, 800);
-        float z = glm::linearRand(0, 800);
-        allFerns.push_back(Entity(fern, glm::vec3(x, 0, z), 0, 0, 0, 2.0f));
     }
 
     MasterRenderer renderer;
@@ -79,13 +92,12 @@ int main() {
         player.move();
         renderer.processEntity(player);
         renderer.processTerrain(terrain);
+        renderer.processEntity(fireplace);
+        renderer.processEntity(santaHat);
+        renderer.processEntity(sign);
         for (const Entity& tree : allTrees)
         {
             renderer.processEntity(tree);
-        }
-        for (const Entity& fern : allFerns)
-        {
-            renderer.processEntity(fern);
         }
         for (const Entity& grass : allGrass)
         {
